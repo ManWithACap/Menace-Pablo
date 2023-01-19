@@ -1,3 +1,6 @@
+//OMFG PLEASE REMEMBER TO USE THIS FUCKING COMMAND AND SAVE YOURSELF THE MOMENTARY HEADACHE!!!!!!!!
+// node src/deploy-commands.js
+
 const { REST, Routes } = require('discord.js');
 const { clientId, guildId, token } = require('../config.json');
 const fs = require('fs');
