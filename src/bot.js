@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, Activity, ActivityType } = require('discord.js');
 
 const { token, clientId, guildId } = require('../config.json')
 
@@ -27,7 +27,11 @@ for (const file of commandFiles) {
 
 
 client.once(Events.ClientReady, c => {
+
     console.log(`Ready! Logged in as ${c.user.tag}. I'm locked, loaded and ready to rock!!`);
+
+    client.user.setActivity('💞 HoneySelect2Libido DX 💞', { type: ActivityType.Playing });
+
 });
 
 
