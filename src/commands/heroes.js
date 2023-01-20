@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('discord.js');
 var undici = require("undici");
 var heroes = "if you see this, something went horribly wrong";
 var heroesList = '';
-var counter = 0;
 
 async function getData(){
     var response = await undici.request("https://overfast-api.tekrop.fr/heroes");
