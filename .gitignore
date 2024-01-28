@@ -1,5 +1,6 @@
 # Directories
 OLD FILES/
+__pycache__/
 
 # Files
 .env
