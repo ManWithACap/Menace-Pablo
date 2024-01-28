@@ -1,4 +1,4 @@
-# Menace-Bot
+# Menace & Pablo
 <div align="center">
   <img src="https://github.com/ManWithACap/Menace-Pablo/assets/58278360/381c55dc-2487-490a-bbff-ff1fd5c27a79" width="150" height="200"/>
   <img src="https://user-images.githubusercontent.com/58278360/205873607-d3d64f46-ba1f-407e-96bb-6b8cf682371b.jpg" width="150" height="200"/>
