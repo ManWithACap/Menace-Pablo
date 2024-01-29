@@ -1,6 +1,6 @@
-import discord, os, dotenv, ctypes
-from discord.ext import commands
+import discord, os, dotenv, ctypes, asyncio
 from colors import Colors
+from discord.ext import commands
 
 # Set console mode to make sure the escape sequences are processed correctly.
 kernel32 = ctypes.windll.kernel32
@@ -18,18 +18,41 @@ token = os.getenv("API_TOKEN")
 @bot.event
 async def on_ready():
 
-    
     # Bot Ready Message
     print(f"\n{Colors.GREEN}\nMenace, reporting for duty.\n{Colors.RESET}\n")
 
-# on_message Event Listener
-@bot.event
-async def on_message(message):
+# Tree-syncing Command
+@bot.command()
+async def sync(ctx):
 
-    # If the bot is DM'd "ping", return "pong".
-    if message.content == "ping":
+    fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+    await ctx.send(f"Synced {len(fmt)} commands.")
 
-        await message.channel.send("pong")
+# Clear Command
+@bot.command()
+async def clear(ctx):
+
+    bot.tree.clear_commands(guild=ctx.guild)
+    await ctx.send("Cleared the existing commands.")
+
+# Async Function for Extension Loading
+async def load():
+
+    for cog in os.listdir("./cogs"):
+
+        if cog != "__pycache__":
+
+            try:
+
+                await bot.load_extension(f"cogs.{cog[:-3]}")
+                print("success: " + cog[:-3])
+
+            except Exception as e:
+
+                print(f"failure: {e}")
+
+# Run the function.
+asyncio.run(load())
 
 # Turn the bot on.
 bot.run(token)
