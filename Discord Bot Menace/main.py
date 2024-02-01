@@ -1,5 +1,5 @@
 import discord, os, dotenv, ctypes, asyncio
-from colors import Colors
+import ansi.colour as Colors
 from discord.ext import commands
 
 # Set console mode to make sure the escape sequences are processed correctly.
@@ -19,7 +19,7 @@ token = os.getenv("API_TOKEN")
 async def on_ready():
 
     # Bot Ready Message
-    print(f"\n{Colors.GREEN}\nMenace, reporting for duty.\n{Colors.RESET}\n")
+    print(f"\n{Colors.fg.green}\nMenace, reporting for duty.\n{Colors.fx.reset}\n")
 
 # Tree-syncing Command
 @bot.command()
@@ -28,7 +28,7 @@ async def sync(ctx):
     fmt = await ctx.bot.tree.sync(guild=ctx.guild)
     await ctx.send(f"Synced {len(fmt)} commands.")
 
-# Clear Command
+# Tree-clearing Command
 @bot.command()
 async def clear(ctx):
 
