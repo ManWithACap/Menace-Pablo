@@ -30,4 +30,4 @@ class Useless(commands.Cog):
 # Setup Function
 async def setup(bot):
     
-    await bot.add_cog(Useless(bot), guilds=[discord.Object(id=1165738081945653369)])
+    await bot.add_cog(Useless(bot), guilds=[discord.Object(id=675390519714775060)])

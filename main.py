@@ -19,21 +19,24 @@ token = os.getenv("API_TOKEN")
 async def on_ready():
 
     # Bot Ready Message
-    print(f"\n{Colors.fg.green}\nMenace, reporting for duty.\n{Colors.fx.reset}\n")
+    print(f"\n{Colors.fg.green}\nMenace, reporting for duty.\n{Colors.fx.reset}")
 
-# Tree-syncing Command
-@bot.command()
-async def sync(ctx):
-
-    fmt = await ctx.bot.tree.sync(guild=ctx.guild)
-    await ctx.send(f"Synced {len(fmt)} commands.")
+    await bot.wait_until_ready()
+    fmt = await bot.tree.sync(guild=bot.get_guild(675390519714775060))
+    print(f"Synced {len(fmt)} commands.")
 
 # Tree-clearing Command
 @bot.command()
 async def clear(ctx):
 
-    bot.tree.clear_commands(guild=ctx.guild)
-    await ctx.send("Cleared the existing commands.")
+    if ctx.author.guild_permissions.administrator:
+
+        bot.tree.clear_commands(guild=ctx.guild)
+        await ctx.send("Cleared the existing commands.")
+
+    else:
+
+        await ctx.send("You do not have admin privilages.\nTherefore, you are not authorized to run this command.\nHow do you even know about this one? 🤔")
 
 # Async Function for Extension Loading
 async def load():

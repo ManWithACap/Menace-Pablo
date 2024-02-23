@@ -14,7 +14,19 @@ class Utility(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot
-        with open("./data/users.json", "r") as file:
+
+        if "data" not in os.listdir():
+
+            print('"data/users.json" does not exist.\nCreating required dependencies...')
+            os.mkdir("data")
+            print('"data" created.')
+            with open("./data/users.json", "w") as file:
+
+                file.write("[]")
+                print('"users.json" created.')
+                file.close()
+
+        with open("data/users.json", "r") as file:
                 
             Utility.users = json.loads(file.read())
             file.close()
@@ -50,6 +62,11 @@ class Utility(commands.Cog):
                 embed.add_field(name="\"edit\"", value="`choice`: \nFor \"Hex Code Color\", make sure to use something like [Google's color picker](https://g.co/kgs/a5zGFqo).\nIf you want to get your profile picture URL, use something like [Toolscord](https://toolscord.com) to grab your discord URL. Only image URLs will work for your icon.")
 
                 await interaction.response.send_message(embed=embed)
+    
+    @app_commands.command()
+    async def whatsnew(self, interaction:discord.Interaction):
+
+        await interaction.response.send_message("Not implemented yet.")
 
     @schedule.command(description="Change different parts of your schedule.")
     async def edit(self, interaction:discord.Interaction, choice:typing.Literal["Title", "Subtitle", "Hex Code Color", "Icon Image URL", "Monday Text", "Tuesday Text", "Wednesday Text", "Thursday Text", "Friday Text", "Saturday Text", "Sunday Text"], value:str):
@@ -221,4 +238,4 @@ class Utility(commands.Cog):
         
 async def setup(bot):
     
-    await bot.add_cog(Utility(bot), guilds=[discord.Object(id=1165738081945653369), discord.Object(id=675390519714775060)])
+    await bot.add_cog(Utility(bot), guilds=[discord.Object(id=675390519714775060)])
