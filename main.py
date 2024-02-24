@@ -38,6 +38,19 @@ async def clear(ctx):
 
         await ctx.send("You do not have admin privilages.\nTherefore, you are not authorized to run this command.\nHow do you even know about this one? 🤔")
 
+# Tree-syncing Command
+@bot.command()
+async def sync(ctx):
+
+    if ctx.author.guild_permissions.administrator:
+
+        fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+        await ctx.send(f"Synced {len(fmt)} commands.")
+
+    else:
+
+        await ctx.send("You do not have admin privilages.\nTherefore, you are not authorized to run this command.\nHow do you even know about this one? 🤔")
+
 # Async Function for Extension Loading
 async def load():
 
